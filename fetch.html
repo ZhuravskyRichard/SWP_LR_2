@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fetch</title>
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        button,
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input id="input13" type="text" value="PORT: 8003">
+        <button id="button13" type="button">Send</button>
+    </div>
+    <script>
+        const URL = window.location.origin
+        const btn = document.getElementById('button13')
+        const input = document.getElementById('input13')
+
+        btn.addEventListener('click', send)
+
+        async function send() {
+            const response = await fetch(URL + '/login')
+            const data = await response.text()
+            input.value = data
+        }
+    </script>
+</body>
+
+</html>
