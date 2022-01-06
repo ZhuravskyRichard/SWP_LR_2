@@ -1,49 +1,37 @@
 <!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fetch</title>
-    <style>
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        button,
-        input {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-
-        button {
-            margin-top: 10px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <input id="input13" type="text" value="PORT: 8003">
-        <button id="button13" type="button">Send</button>
-    </div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    input13 {
+      margin: 0;
+      padding: 5px;
+    }
+    button13 {
+      padding: 5px;
+      color: rgb(0, 110, 255);
+      text-align: center;
+      background-color: rgb(0, 255, 55);
+    }
+  </style>
+  <body>
+    <input id="input13" class="input13" value="8003" />
+    <button id="button13" class="button13">Fetch</button>
     <script>
-        const URL = window.location.origin
-        const btn = document.getElementById('button13')
-        const input = document.getElementById('input13')
+      const btn = document.querySelector('#button13');
+      const inp = document.querySelector('#input13');
 
-        btn.addEventListener('click', send)
+      const fetchName = async () => {
+        const req = await fetch('/login');
+        const name = await req.text();
+        inp.value = name;
+      };
 
-        async function send() {
-            const response = await fetch(URL + '/login')
-            const data = await response.text()
-            input.value = data
-        }
+      btn.addEventListener('click', fetchName);
     </script>
-</body>
-
+  </body>
 </html>
